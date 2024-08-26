@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+
 
 public class login extends JFrame implements ActionListener{
 
@@ -76,8 +78,44 @@ public class login extends JFrame implements ActionListener{
 
         if(e.getSource()==login){
 
+           try{
+
+            String username=tusername.getText();
+            char[] passwordChars=tpassword.getPassword();
+            String password = new String(passwordChars);
+
+            conn dbconn=new conn();//connection object for checking data is matching or not
+
+             //query 
+            String query = "SELECT * FROM login WHERE username='" + username + "' AND password='" + password + "'";
+
+            //for executing 
+            ResultSet resultSet=dbconn.statement.executeQuery(query);//if correct then id and passwords are matching
+
+            if(resultSet.next()){
+
+                System.out.println("Login successful, opening main frame...");
+               setVisible(false); //frame will cut if result is true
+                dispose();
+                //SwingUtilities.invokeLater(() -> new main());
+                new main();
+            }else{
+                JOptionPane.showMessageDialog(null, "Invalid username or password");
+            }
+
+           }catch(Exception E){
+
+             E.printStackTrace();
+
+           }
+
+
+
+
+
+
         }else if(e.getSource()==back){
-            System.exit(100);
+            System.exit(0);
         }
 
     }

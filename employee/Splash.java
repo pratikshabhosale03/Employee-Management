@@ -37,3 +37,11 @@ public class Splash extends JFrame{
     }
     
 }
+
+
+
+
+
+
+// javac -d bin -cp "lib/*;src" src/employee/*.java
+// java -cp "bin;lib/*" employee.Splash

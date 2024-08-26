@@ -17,11 +17,15 @@ public class conn {
             Class.forName("com.mysql.cj.jdbc.Driver");//optional
             connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/employeemanagement","root","mysql@123");
             statement=connection.createStatement();
+          
+        
 
         }catch(Exception e){
             e.printStackTrace();
         }
 
-    }
+    }//public static void main(String[] args) {
+       // new conn(); // This will test the connection
+    //}
     
 }
